@@ -174,18 +174,18 @@ if ($AddTeamMembers) {
 
     $allSourceRepoTeams | ForEach-Object {
         $sourceRepoTeam = $_
-        $sourceRepoTeamGroups = GetTeamGroups -org $SourceOrg -team $sourceTeam.slug -token $sourcePat
+        # $sourceRepoTeamGroups = GetTeamGroups -org $SourceOrg -team $sourceTeam.slug -token $sourcePat
         $sourceRepoTeamMembers = GetTeamMembers -org $SourceOrg -team $sourceRepoTeam.slug -token $sourcePat
 
         $targetTeam = $newTeams | Where-Object -Property slug -EQ -Value $sourceRepoTeam.slug
 
-        if ($sourceRepoTeamGroups.Length -gt 0) {
-            $targetTeamGroups = UpdateTeamGroups -org $TargetOrg -team $targetTeam.slug -groups $sourceRepoTeamGroups -token $targetPat
+        # if ($sourceRepoTeamGroups.Length -gt 0) {
+        #     $targetTeamGroups = UpdateTeamGroups -org $TargetOrg -team $targetTeam.slug -groups $sourceRepoTeamGroups -token $targetPat
     
-            if ($targetTeamGroups.Length -eq 0) {
-                Write-Host "The groups cannot be added to team $($targetTeam.slug) in org '$TargetOrg'. This team is not externally managed." -ForegroundColor Yellow
-            }
-        }
+        #     if ($targetTeamGroups.Length -eq 0) {
+        #         Write-Host "The groups cannot be added to team $($targetTeam.slug) in org '$TargetOrg'. This team is not externally managed." -ForegroundColor Yellow
+        #     }
+        # }
 
         $sourceRepoTeamMembers | ForEach-Object {
             $sourceTeamMember = $_
