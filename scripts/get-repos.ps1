@@ -93,7 +93,8 @@ $reposWithMetrics = $repos | ForEach-Object {
         owner_type    = $repo.owner_type
         visibility    = $repo.visibility
         issues        = $issuesCount
-        pull_requests = $pullRequestsCount        
+        pull_requests = $pullRequestsCount  
+        archived      = $repo.archived      
     }
 } | Sort-Object -Property org, name
 
